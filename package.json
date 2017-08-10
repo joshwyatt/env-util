@@ -1,0 +1,20 @@
+{
+  "name": "@databraid/env-utils",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [],
+  "author": "@databraid",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "2.95.0"
+  },
+  "devDependencies": {
+    "chai": "4.1.1",
+    "mocha": "3.5.0",
+    "sinon": "3.2.0"
+  },
+  "description": ""
+}
