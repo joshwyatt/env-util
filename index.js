@@ -1,49 +1,20 @@
-const fs = require('fs');
-const { S3 } = require('aws-sdk');
-
-class EnvUtil {
-  constructor(bucket, key) {
-    this.bucket = bucket;
-    this.key = key;
-    this.s3 = new S3();
-  }
-
-  getEnvVariables() {
-    const params = {
-      Bucket: this.bucket,
-      Key: this.key
-    };
-
-    return new Promise((resolve, reject) => {
-      console.log(params)
-      this.s3.getObject(params, (err, data) => {
-        if (err) {
-          reject(new Error(`There was an error retrieving ${params.Bucket}/${params.key}: ${err}`));
-        } else {
-          resolve(data.Body.toString().trim());
-        }
-      });
-    });
-
-  }
-
-  writeToDotEnv(envVariables) {
-    fs.writeFile('./.env', envVariables, (err) => {
-      if (err) {
-        throw new Error(`There was an error when writing to .env: ${env}`);
-      }
-    });
-  }
-}
-
-const envUtil = new EnvUtil('db-open', 'openfile.env');
-
+const argv = require('minimist')(process.argv.slice(2));
+const EnvUtil = require('./EnvUtil');
+checkArgs();
+const envUtil = new EnvUtil(argv.bucket, argv.key);
 envUtil.getEnvVariables()
-  .then(envUtil.writeToDotEnv)
-  .catch(handleError);
+  .then(envUtil.writeToDotEnv);
 
-function handleError(err) {
-  throw new Error(err);
+function checkArgs() {
+  if(!argv.bucket && !argv.key) {
+    throw new Error('No bucket or key passed');
+  }
+
+  if(!argv.bucket) {
+    throw new Error('No bucket passed');
+  }
+
+  if(!argv.key) {
+    throw new Error('No key passed');
+  }
 }
-
-module.exports = EnvUtil;
