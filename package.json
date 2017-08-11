@@ -1,21 +1,33 @@
 {
-  "name": "@databraid/env-utils",
+  "name": "@databraid/env-util",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test"
   },
   "keywords": [],
+  "private": false,
   "author": "@databraid",
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "2.95.0",
-    "minimist": "^1.2.0"
+    "minimist": "1.2.0"
   },
   "devDependencies": {
     "chai": "4.1.1",
     "mocha": "3.5.0",
     "sinon": "3.2.0"
   },
-  "description": ""
+  "description": "This package will fetch the contents of a file stored in AWS S3 and write them to a `.env` file. The intention of this package is that it be run by a deployed container at its creation in order to add environmental variable secrets to the running source code programmatically.",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronanfitz/env-util.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ronanfitz/env-util/issues"
+  },
+  "homepage": "https://github.com/ronanfitz/env-util#readme"
 }
