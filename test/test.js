@@ -1,3 +1,4 @@
+/* eslint-disable no-undef, no-unused-expressions */
 const { expect } = require('chai');
 const { stub } = require('sinon');
 const EnvUtil = require('../');
@@ -52,7 +53,6 @@ describe('EnvUtil.getEnvVariables method', () => {
 });
 
 describe('EnvUtil.writeToDotEnv method', () => {
-
   const envFile = 'KEY=VALUE';
   const stubbedWriteFile = stub(fs, 'writeFile');
 
@@ -76,7 +76,7 @@ describe('EnvUtil.writeToDotEnv method', () => {
     stubbedWriteFile.withArgs('./.env', envFile).returns('ok');
 
     expect(envUtil.writeToDotEnv).to.throw();
-    expect(() => { envUtil.writeToDotEnv(envFile)}).to.not.throw();
+    expect(() => { envUtil.writeToDotEnv(envFile); }).to.not.throw();
   });
 });
 

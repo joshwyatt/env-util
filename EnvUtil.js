@@ -11,7 +11,7 @@ class EnvUtil {
   getEnvVariables() {
     const params = {
       Bucket: this.bucket,
-      Key: this.key
+      Key: this.key,
     };
 
     return new Promise((resolve, reject) => {
@@ -23,13 +23,13 @@ class EnvUtil {
         }
       });
     });
-
   }
 
+  /* eslint-disable class-methods-use-this */
   writeToDotEnv(envVariables) {
     fs.writeFile('./.env', envVariables, (err) => {
       if (err) {
-        throw new Error(`There was an error when writing to .env: ${env}`);
+        throw new Error(`There was an error when writing to .env: ${err}`);
       }
     });
   }
