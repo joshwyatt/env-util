@@ -1,7 +1,7 @@
 /* eslint-disable no-undef, no-unused-expressions */
 const { expect } = require('chai');
 const { stub } = require('sinon');
-const EnvUtil = require('../');
+const EnvUtil = require('../EnvUtil');
 const fs = require('fs');
 
 describe('EnvUtil', () => {
