@@ -1,6 +1,6 @@
 {
   "name": "@databraid/env-util",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test",
