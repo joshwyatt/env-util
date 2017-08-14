@@ -1,14 +1,13 @@
 {
   "name": "@databraid/env-util",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test",
     "lint": "./node_modules/eslint/bin/eslint.js --fix .",
     "update-version": "./scripts/update-version",
     "addrc": "./scripts/addrc",
-    "publish": "./scripts/publish",
-    "update-and-publish": "npm run addrc && npm run update-version && npm run publish"
+    "update-and-publish": "npm run addrc && npm run update-version && npm publish"
   },
   "keywords": [],
   "private": false,
