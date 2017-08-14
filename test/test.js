@@ -52,20 +52,20 @@ describe('EnvUtil.getEnvVariables method', () => {
   });
 });
 
-describe('EnvUtil.writeToDotEnv method', () => {
+describe('EnvUtil.writeToFile method', () => {
   const envFile = 'KEY=VALUE';
   const stubbedWriteFile = stub(fs, 'writeFile');
 
   it('should exist', () => {
     const envUtil = new EnvUtil('somebucket', 'somekey');
-    expect(envUtil.writeToDotEnv).to.be.exist;
-    expect(envUtil.writeToDotEnv).to.be.a('function');
+    expect(envUtil.writeToFile).to.be.exist;
+    expect(envUtil.writeToFile).to.be.a('function');
   });
 
   it('should call `fs.writeFile`', () => {
     const envUtil = new EnvUtil('somebucket', 'somekey');
 
-    envUtil.writeToDotEnv(envFile);
+    envUtil.writeToFile(envFile);
     expect(fs.writeFile.called).to.be.true;
   });
 
@@ -75,8 +75,8 @@ describe('EnvUtil.writeToDotEnv method', () => {
     stubbedWriteFile.withArgs('./.env').throws();
     stubbedWriteFile.withArgs('./.env', envFile).returns('ok');
 
-    expect(envUtil.writeToDotEnv).to.throw();
-    expect(() => { envUtil.writeToDotEnv(envFile); }).to.not.throw();
+    expect(envUtil.writeToFile).to.throw();
+    expect(() => { envUtil.writeToFile(envFile); }).to.not.throw();
   });
 });
 
