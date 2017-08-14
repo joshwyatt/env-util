@@ -1,6 +1,4 @@
 npmpublisher:
-  volumes:
-    - .:/app/
   build:
     dockerfile: Dockerfile
   encrypted_env_file: env.encrypted

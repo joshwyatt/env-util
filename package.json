@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test",
-    "lint": "node_modules/eslint/bin/eslint.js --fix .",
+    "lint": "./node_modules/eslint/bin/eslint.js --fix .",
     "update-version": "./scripts/update-version",
     "addrc": "./scripts/addrc",
     "publish": "./scripts/publish",
