@@ -2,10 +2,12 @@ const fs = require('fs');
 const { S3 } = require('aws-sdk');
 
 class EnvUtil {
-  constructor(bucket, key) {
+  constructor(bucket, key, file = './.env') {
     this.bucket = bucket;
     this.key = key;
+    this.file = file;
     this.s3 = new S3();
+    this.writeToFile = this.writeToFile.bind(this);
   }
 
   getEnvVariables() {
@@ -26,23 +28,13 @@ class EnvUtil {
   }
 
   /* eslint-disable class-methods-use-this */
-  writeToDotEnv(envVariables) {
-    fs.writeFile('./.env', envVariables, (err) => {
+  writeToFile(envVariables) {
+    fs.writeFile(this.file, envVariables, (err) => {
       if (err) {
         throw new Error(`There was an error when writing to .env: ${err}`);
       }
     });
   }
-}
-
-const envUtil = new EnvUtil('db-open', 'openfile.env');
-
-envUtil.getEnvVariables()
-  .then(envUtil.writeToDotEnv)
-  .catch(handleError);
-
-function handleError(err) {
-  throw new Error(err);
 }
 
 module.exports = EnvUtil;

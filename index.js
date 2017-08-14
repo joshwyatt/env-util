@@ -3,9 +3,10 @@ const argv = require('minimist')(process.argv.slice(2));
 const EnvUtil = require('./EnvUtil');
 
 checkArgs();
-const envUtil = new EnvUtil(argv.bucket, argv.key);
+const envUtil = new EnvUtil(argv.bucket, argv.key, argv.file);
+
 envUtil.getEnvVariables()
-  .then(envUtil.writeToDotEnv);
+  .then(envUtil.writeToFile);
 
 function checkArgs() {
   if (!argv.bucket && !argv.key) {
