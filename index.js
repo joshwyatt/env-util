@@ -6,7 +6,8 @@ checkArgs();
 const envUtil = new EnvUtil(argv.bucket, argv.key, argv.file);
 
 envUtil.getEnvVariables()
-  .then(envUtil.writeToFile);
+  .then(envUtil.writeToFile)
+  .catch(handleError);
 
 function checkArgs() {
   if (!argv.bucket && !argv.key) {
@@ -20,4 +21,8 @@ function checkArgs() {
   if (!argv.key) {
     throw new Error('No key passed');
   }
+}
+
+function handleError(err) {
+  throw new Error(err);
 }
