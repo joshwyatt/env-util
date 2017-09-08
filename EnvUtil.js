@@ -34,11 +34,11 @@ class EnvUtil {
   writeToFile(envVariables) {
     if (this.directory !== '.') {
       const dir = this.directory;
-      if (!fs.existsSync(dir)){
-          fs.mkdirSync(dir);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
       }
     }
-    let filePath = path.join(this.directory, this.file);
+    const filePath = path.join(this.directory, this.file);
 
     fs.writeFile(filePath, envVariables, (err) => {
       if (err) {
