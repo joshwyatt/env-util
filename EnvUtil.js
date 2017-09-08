@@ -1,10 +1,13 @@
 const fs = require('fs');
+const path = require('path');
 const { S3 } = require('aws-sdk');
 
+
 class EnvUtil {
-  constructor(bucket, key, file = './.env') {
+  constructor(bucket, key, directory = '.', file = '.env') {
     this.bucket = bucket;
     this.key = key;
+    this.directory = directory;
     this.file = file;
     this.s3 = new S3();
     this.writeToFile = this.writeToFile.bind(this);
@@ -29,7 +32,15 @@ class EnvUtil {
 
   /* eslint-disable class-methods-use-this */
   writeToFile(envVariables) {
-    fs.writeFile(this.file, envVariables, (err) => {
+    if (this.directory !== '.') {
+      const dir = this.directory;
+      if (!fs.existsSync(dir)){
+          fs.mkdirSync(dir);
+      }
+    }
+    let filePath = path.join(this.directory, this.file);
+
+    fs.writeFile(filePath, envVariables, (err) => {
       if (err) {
         throw new Error(`There was an error when writing to .env: ${err}`);
       }
