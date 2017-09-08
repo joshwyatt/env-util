@@ -3,7 +3,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const EnvUtil = require('./EnvUtil');
 
 checkArgs();
-const envUtil = new EnvUtil(argv.bucket, argv.key, argv.file);
+const envUtil = new EnvUtil(argv.bucket, argv.key, argv.directory, argv.file);
 
 envUtil.getEnvVariables()
   .then(envUtil.writeToFile)
