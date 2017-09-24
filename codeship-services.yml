@@ -1,4 +1,9 @@
 npmpublisher:
+  volumes:
+    - .:/app/
+  image: databraiddb/npm-publisher:latest
+  encrypted_env_file: env.encrypted
+
+env-util:
   build:
     dockerfile: Dockerfile
-  encrypted_env_file: env.encrypted
