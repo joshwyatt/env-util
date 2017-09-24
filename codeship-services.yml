@@ -1,4 +1,4 @@
-npmpublisher:
+npm-publisher:
   volumes:
     - .:/app/
   image: databraiddb/npm-publisher:latest

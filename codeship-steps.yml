@@ -2,5 +2,5 @@
   command: npm run lint
 - service: env-util
   command: npm test
-- service: npmpublisher
+- service: npm-publisher
   command: publish
