@@ -72,11 +72,10 @@ describe('EnvUtil.writeToFile method', () => {
   it('should throw when not passed contents to write', () => {
     const envUtil = new EnvUtil('somebucket', 'somekey');
 
-    stubbedWriteFile.withArgs('./.env').throws();
-    stubbedWriteFile.withArgs('./.env', envFile).returns('ok');
+    stubbedWriteFile.withArgs('.env').throws();
+    stubbedWriteFile.withArgs('.env', envFile).returns('ok');
 
     expect(envUtil.writeToFile).to.throw();
     expect(() => { envUtil.writeToFile(envFile); }).to.not.throw();
   });
 });
-
